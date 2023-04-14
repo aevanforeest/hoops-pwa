@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css?family=Open Sans:400,700");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000000;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+}
+
+main {
+
+}
+
+.container {
+  background-color: #ffffff;
+  height: 100vh;
+  text-align: center;
+}
+
+.container > page {
+  display: none;
+}
+
+.container > page.visible {
+  display: block;
+}
+
+header {
+  background: #5b9bd5;
+  color: #ffffff;
+  height: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 4px 16px;
+}
+
+header > div.left {
+  grid-column: 1;
+  text-align: left;
+}
+
+header > div.center {
+  grid-column: 2;
+  text-align: center;
+}
+
+header > div.right {
+  grid-column: 3;
+  text-align: right;
+}
+
+nav {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+nav > div {
+  color: #000000;
+}
+
+nav > div.selected {
+  color: #5b9bd5;
+  font-weight: bold;
+  border-bottom: 2px solid #5b9bd5;
+}
+
+.teamLogo {
+  width: 100px;
+  height: 100px;
+}
+
+ul {
+  text-align: left;
+}
