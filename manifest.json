@@ -2,7 +2,7 @@
   "name": "Hoops",
   "icons": [
     {
-      "src": "512x512.png",
+      "src": "logo-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
