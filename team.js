@@ -8,9 +8,9 @@ function renderPage(db, params) {
     const span = document.querySelector('#teamName');
     span.innerHTML = team.name;
   };
-  document.querySelector('header > div.right > a').setAttribute('href', 'editTeam.html?key=' + teamKey);
-  document.querySelector('main > div#players > a').setAttribute('href', 'newPlayer.html?key=' + teamKey);
-  document.querySelector('main > div#games > a').setAttribute('href', 'newGame.html?key=' + teamKey);
+  document.querySelector('header > div.right > a').setAttribute('href', 'editTeam.html?id=' + teamId);
+  document.querySelector('main > div#players > a').setAttribute('href', 'newPlayer.html?id=' + teamId);
+  document.querySelector('main > div#games > a').setAttribute('href', 'newGame.html?id=' + teamId);
 
   // Players page
   const playerStore = transaction.objectStore('players');
