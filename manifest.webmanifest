@@ -2,9 +2,10 @@
   "name": "Hoops",
   "icons": [
     {
-      "src": "512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "hoops.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": any"
     }
   ],
   "start_url": "https://aevanforeest.github.io/hoops-pwa/",
