@@ -12,7 +12,7 @@ function saveTeam() {
 
   const team = {
     'name': teamName,
-    // 'logo': '',
+    // image
   };
 
   const transaction = db.transaction('teams', 'readwrite');
