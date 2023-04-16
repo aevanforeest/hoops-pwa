@@ -1,9 +1,9 @@
 function renderPage(db, params) {
   // Main page
-  const teamKey = params.get('key');
+  const teamId = params.get('id');
   const transaction = db.transaction(['teams', 'players', 'games'], 'readonly');
   const teamStore = transaction.objectStore('teams');
-  teamStore.get(Number(teamKey)).onsuccess = function(event) {
+  teamStore.get(Number(teamId)).onsuccess = function(event) {
     const team = event.target.result;
     const span = document.querySelector('#teamName');
     span.innerHTML = team.name;
@@ -13,42 +13,32 @@ function renderPage(db, params) {
   document.querySelector('main > div#games > a').setAttribute('href', 'newGame.html?key=' + teamKey);
 
   // Players page
-  {
-    const playerStore = transaction.objectStore('players');
-    const teamIndex = playerStore.index('team');
-    teamIndex.getAllKeys(Number(teamKey)).onsuccess = function(event) {
-      const playerKeys = event.target.result;
-      const list = document.querySelector('ul#playerList');
-      playerKeys.forEach(function(playerKey) {
-        playerStore.get(Number(playerKey)).onsuccess = function(event) {
-          const player = event.target.result;
-          const item = document.createElement('li');
-          item.innerHTML =
-            '<a href="player.html?key=' + playerKey + '">' + player.number + ' ' + player.name + '</a>';
-          list.append(item);  
-        }
-      });
-    };
-  }
+  const playerStore = transaction.objectStore('players');
+  const playerTeamIndex = playerStore.index('team');
+  playerTeamIndex.getAll(Number(teamId)).onsuccess = function(event) {
+    const players = event.target.result;
+    const list = document.querySelector('ul#playerList');
+    players.forEach(function(player) {
+      const item = document.createElement('li');
+      item.innerHTML =
+        '<a href="player.html?id=' + playerId + '">' + player.number + ' ' + player.name + '</a>';
+      list.append(item);
+    });
+  };
 
   // Games page
-  {
-    const gameStore = transaction.objectStore('games');
-    const teamIndex = gameStore.index('team');
-    teamIndex.getAllKeys(Number(teamKey)).onsuccess = function(event) {
-      const gameKeys = event.target.result;
-      const list = document.querySelector('ul#gameList');
-      gameKeys.forEach(function(gameKey) {
-        gameStore.get(Number(gameKey)).onsuccess = function(event) {
-          const game = event.target.result;
-          const item = document.createElement('li');
-          item.innerHTML =
-            '<a href="game.html?key=' + gameKey + '">' + game.date + ' ' + game.name + '</a>';
-          list.append(item);  
-        }
-      });
-    };
-  }
+  const gameStore = transaction.objectStore('games');
+  const gameTeamIndex = gameStore.index('team');
+  gameTeamIndex.getAll(Number(teamId)).onsuccess = function(event) {
+    const games = event.target.result;
+    const list = document.querySelector('ul#gameList');
+    games.forEach(function(game) {
+      const item = document.createElement('li');
+      item.innerHTML =
+        '<a href="game.html?id=' + game.id + '">' + game.date + ' ' + game.name + '</a>';
+      list.append(item);
+    });
+  };
 }
 
 function navBar(e) {
