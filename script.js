@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  self.indexedDB.delete('HOOPS_DB');
+
   const params = new URLSearchParams(window.location.search);
   var request = self.indexedDB.open('HOOPS_DB', 1);
 
@@ -22,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   request.onupgradeneeded = function(event) {
-    db = event.target.result;
-    const teams = db.createObjectStore('teams', {autoIncrement: true});
-    const players = db.createObjectStore('players', {autoIncrement: true});
+    const db = event.target.result;
+    const teams = db.createObjectStore('teams', {keyPath: 'id', autoIncrement: true});
+    const players = db.createObjectStore('players', {keyPath: 'id', autoIncrement: true});
     players.createIndex('team', 'team');
-    const games = db.createObjectStore('games', {autoIncrement: true});
+    const games = db.createObjectStore('games', {keyPath: 'id', autoIncrement: true});
     games.createIndex('team', 'team');
   }
 });
