@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  self.indexedDB.deleteDatabase('HOOPS_DB');
+  // self.indexedDB.deleteDatabase('HOOPS_DB');
 
   const params = new URLSearchParams(window.location.search);
   var request = self.indexedDB.open('HOOPS_DB', 1);
