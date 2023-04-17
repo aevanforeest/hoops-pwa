@@ -1,18 +1,18 @@
 var db;
-var teamKey;
+var teamId;
 
 function renderPage(db, params) {
   this.db = db;
-  teamKey = params.get('key');
+  teamId = params.get('id');
   const transaction = db.transaction('teams', 'readonly');
   const teamsStore = transaction.objectStore('teams');
-  teamsStore.get(Number(teamKey)).onsuccess = function(event) {
+  teamsStore.get(Number(teamId)).onsuccess = function(event) {
     const team = event.target.result;
     const input = document.querySelector('#teamName');
     input.value = team.name;
   };
-  document.querySelector('header > div.left > a').setAttribute('href', 'team.html?key=' + teamKey);
-  document.querySelector('header > div.right > a').setAttribute('href', 'team.html?key=' + teamKey);
+  document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + teamId);
+  document.querySelector('header > div.right > a').setAttribute('href', 'team.html?id=' + teamId);
 }
 
 function saveTeam() {
@@ -22,21 +22,23 @@ function saveTeam() {
   }
 
   const team = {
+    'id': Number(teamId),
     'name': teamName,
-    // 'logo': '',
+    // image
   };
 
   const transaction = db.transaction('teams', 'readwrite');
   const teamsStore = transaction.objectStore('teams');
-  teamsStore.put(team, Number(teamKey));
+  teamsStore.put(team);
   return true;
 }
 
 function deleteTeam() {
-  // confirm
-  // delete players
-  const transaction = db.transaction('teams', 'readwrite');
-  const teamsStore = transaction.objectStore('teams');
-  teamsStore.delete(Number(teamKey));
-  window.location.replace('teams.html');
+  if (confirm('Delete team?')) {
+    // delete players
+    const transaction = db.transaction('teams', 'readwrite');
+    const teamsStore = transaction.objectStore('teams');
+    teamsStore.delete(Number(teamId));
+    window.location.replace('teams.html');
+  }
 }

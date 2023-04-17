@@ -1,6 +1,11 @@
+var db;
+var teamId;
+
 function renderPage(db, params) {
+  this.db = db;
+  teamId = params.get('id');
+
   // Main page
-  const teamId = params.get('id');
   const transaction = db.transaction(['teams', 'players', 'games'], 'readonly');
   const teamStore = transaction.objectStore('teams');
   teamStore.get(Number(teamId)).onsuccess = function(event) {
@@ -21,8 +26,8 @@ function renderPage(db, params) {
     players.forEach(function(player) {
       const item = document.createElement('li');
       item.innerHTML =
-        '<a href="player.html?id=' + playerId + '">' + player.number + ' ' + player.name + '</a>';
-      list.append(item);
+        '<a href="player.html?id=' + player.id + '">#' + player.number + ' ' + player.name + '</a>';
+      list.append(item);  
     });
   };
 
@@ -36,7 +41,7 @@ function renderPage(db, params) {
       const item = document.createElement('li');
       item.innerHTML =
         '<a href="game.html?id=' + game.id + '">' + game.date + ' ' + game.name + '</a>';
-      list.append(item);
+      list.append(item);  
     });
   };
 }
@@ -47,7 +52,6 @@ function navBar(e) {
   node.classList.add('selected');
   document.querySelector('main > div.selected').classList.remove('selected');
   var index = Array.prototype.indexOf.call(node.parentNode.children, node);
-  console.log(index);
   document.querySelector('main > div:nth-of-type(' + (index + 1) + ')').classList.add('selected');
   return false;
 }

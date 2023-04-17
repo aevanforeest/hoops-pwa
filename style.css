@@ -1,4 +1,4 @@
-@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+@import url("https://fonts.googleapis.com/css?family=Open Sans:400,700");
 
 * {
   margin: 0;
@@ -12,7 +12,7 @@ html {
 
 body {
   background: #000000;
-  font-family: "SF Pro Display", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1.5rem;
   background-color: #ffffff;
   height: 100%;
@@ -31,7 +31,7 @@ header {
   grid-template-columns: repeat(3, 1fr);
   padding: 8px 16px;
   margin-bottom: 16px;
-  height: 50px;
+  height: 48px;
 }
 
 header a {
@@ -75,7 +75,7 @@ nav ul li.selected {
 }
 
 main {
-  height: calc(100vh - 50px);
+  height: calc(100vh - 48px - 16px);
   overflow: auto;
 }
 

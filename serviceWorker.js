@@ -1,6 +1,8 @@
 const staticHoops = 'hoops-v1';
+
 const assets = [
   '/',
+  '/index.html',
   '/style.css',
   '/script.js',
   '/teams.html',
@@ -13,14 +15,14 @@ const assets = [
   '/editTeam.js',
   // '/player.html',
   // '/player.js',
-  // '/newPlayer.html',
-  // '/newPlayer.js',
+  '/newPlayer.html',
+  '/newPlayer.js',
   // '/editPlayer.html',
   // '/editPlayer.js',
   // '/game.html',
   // '/game.js',
-  // '/newGame.html',
-  // '/newGame.js',
+  '/newGame.html',
+  '/newGame.js',
   // '/editGame.html',
   // '/editGame.js',
 ];

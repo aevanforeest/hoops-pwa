@@ -1,12 +1,12 @@
 var db;
-var teamKey;
+var teamId;
 
 function renderPage(db, params) {
   this.db = db;
-  teamKey = params.get('key');
+  teamId = params.get('id');
 
-  document.querySelector('header > div.left > a').setAttribute('href', 'team.html?key=' + teamKey);
-  document.querySelector('header > div.right > a').setAttribute('href', 'team.html?key=' + teamKey);
+  document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + teamId);
+  document.querySelector('header > div.right > a').setAttribute('href', 'team.html?id=' + teamId);
 }
 
 function savePlayer() {
@@ -19,7 +19,7 @@ function savePlayer() {
   const player = {
     'name': playerName,
     'number': playerNumber,
-    'team': Number(teamKey),
+    'team': Number(teamId),
   };
 
   const transaction = db.transaction('players', 'readwrite');

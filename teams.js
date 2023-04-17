@@ -1,4 +1,7 @@
+var db;
+
 function renderPage(db) {
+  this.db = db;
   const transaction = db.transaction('teams', 'readonly');
   const teamsStore = transaction.objectStore('teams');
   teamsStore.getAll().onsuccess = function(event) {
