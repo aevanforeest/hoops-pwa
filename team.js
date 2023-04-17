@@ -44,6 +44,12 @@ function renderPage(db, params) {
       list.append(item);  
     });
   };
+
+  if (location.hash == '#games') {
+    const node = document.querySelector('nav li:nth-of-type(2) > a');
+    console.log(node);
+    navBar(node);
+  }
 }
 
 function navBar(e) {

@@ -4,8 +4,8 @@ var teamId;
 function renderPage(db, params) {
   this.db = db;
   teamId = params.get('id');
-  document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + teamId);
-  document.querySelector('header > div.right > a').setAttribute('href', 'team.html?id=' + teamId);
+  document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + teamId + '#games');
+  document.querySelector('header > div.right > a').setAttribute('href', 'team.html?id=' + teamId + '#games');
 }
 
 function saveGame() {
