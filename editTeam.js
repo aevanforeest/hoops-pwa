@@ -8,11 +8,10 @@ function renderPage(db, params) {
   const teamsStore = transaction.objectStore('teams');
   teamsStore.get(Number(teamId)).onsuccess = function(event) {
     const team = event.target.result;
-    const input = document.querySelector('#teamName');
-    input.value = team.name;
+    document.querySelector('#teamName').value = team.name;
+    document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + teamId);
+    document.querySelector('header > div.right > a').setAttribute('href', 'team.html?id=' + teamId);
   };
-  document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + teamId);
-  document.querySelector('header > div.right > a').setAttribute('href', 'team.html?id=' + teamId);
 }
 
 function saveTeam() {
@@ -24,7 +23,6 @@ function saveTeam() {
   const team = {
     'id': Number(teamId),
     'name': teamName,
-    // image
   };
 
   const transaction = db.transaction('teams', 'readwrite');
@@ -39,6 +37,5 @@ function deleteTeam() {
     const transaction = db.transaction('teams', 'readwrite');
     const teamsStore = transaction.objectStore('teams');
     teamsStore.delete(Number(teamId));
-    window.location.replace('teams.html');
   }
 }

@@ -4,7 +4,6 @@ var teamId;
 function renderPage(db, params) {
   this.db = db;
   teamId = params.get('id');
-
   document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + teamId);
   document.querySelector('header > div.right > a').setAttribute('href', 'team.html?id=' + teamId);
 }
@@ -12,6 +11,7 @@ function renderPage(db, params) {
 function saveGame() {
   const opponentName = document.querySelector('#opponentName').value;
   const gameDate = document.querySelector('#gameDate').value;
+  const isHomeGame = document.querySelector('#isHomeGame').checked;
   if (opponentName == '' || gameDate == '') {
     return false;
   }
@@ -19,7 +19,7 @@ function saveGame() {
   const game = {
     'name': opponentName,
     'date': gameDate,
-    'home': true, // TODO
+    'home': isHomeGame,
     'team': Number(teamId),
   };
 

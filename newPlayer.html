@@ -12,13 +12,20 @@
  <body>
   <header>
    <div class="left"><a href="#">&lt; Team</a></div>
-   <div class="center">Team</div>
+   <div class="center">New Player</div>
    <div class="right"><a href="#" onclick="return savePlayer();">Save</a></div>
   </header>
   <main>
     <!--input id="playerImage" type="file" accept="image/*" /-->
     <input id="playerName" placeholder="Player name" />
+    <br />
     <input id="playerNumber" placeholder="Player number" />
+    <br />
+    Active
+    <label class="switch">
+      <input id="isActive" type="checkbox" checked="checked" />
+      <span class="slider"></span>
+    </label>
   </main>
   <script src="script.js"></script>
   <script src="newPlayer.js"></script>

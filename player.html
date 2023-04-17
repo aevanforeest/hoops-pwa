@@ -11,15 +11,25 @@
  </head>
  <body>
   <header>
-   <div class="left"><a href="teams.html">&lt; Teams</a></div>
-   <div class="center">New Team</div>
-   <div class="right"><a href="teams.html" onclick="return saveTeam();">Save</a></div>
+   <div class="left"><a href="#">&lt; Team</a></div>
+   <div class="center">Player</div>
+   <div class="right"><a href="#">Edit</a></div>
   </header>
   <main>
-    <!--input id="teamLogo" type="file" accept="image/*" /-->
-    <input id="teamName" placeholder="Team name" />
+    <span id="playerName"></span>
+    <br />
+    <span id="playerNumber"></span>
+    <hr />
+    <nav>
+      <ul>
+        <li class="selected"><a href="#">Stats</a></li>
+      </ul>
+    </nav>
+    <div id="stats">
+      ...
+    </div>
   </main>
   <script src="script.js"></script>
-  <script src="newTeam.js"></script>
+  <script src="player.js"></script>
  </body>
 </html>

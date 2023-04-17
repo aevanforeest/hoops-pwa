@@ -10,12 +10,11 @@ function renderPage(db, params) {
   const teamStore = transaction.objectStore('teams');
   teamStore.get(Number(teamId)).onsuccess = function(event) {
     const team = event.target.result;
-    const span = document.querySelector('#teamName');
-    span.innerHTML = team.name;
-  };
-  document.querySelector('header > div.right > a').setAttribute('href', 'editTeam.html?id=' + teamId);
-  document.querySelector('main > div#players > a').setAttribute('href', 'newPlayer.html?id=' + teamId);
-  document.querySelector('main > div#games > a').setAttribute('href', 'newGame.html?id=' + teamId);
+    document.querySelector('#teamName').innerHTML = team.name;
+    document.querySelector('header > div.right > a').setAttribute('href', 'editTeam.html?id=' + teamId);
+    document.querySelector('main > div#players > a').setAttribute('href', 'newPlayer.html?id=' + teamId);
+    document.querySelector('main > div#games > a').setAttribute('href', 'newGame.html?id=' + teamId);
+    };
 
   // Players page
   const playerStore = transaction.objectStore('players');
@@ -25,6 +24,7 @@ function renderPage(db, params) {
     const list = document.querySelector('ul#playerList');
     players.forEach(function(player) {
       const item = document.createElement('li');
+      item.setAttribute('class', player.active ? 'active': 'inactive');
       item.innerHTML =
         '<a href="player.html?id=' + player.id + '">#' + player.number + ' ' + player.name + '</a>';
       list.append(item);  

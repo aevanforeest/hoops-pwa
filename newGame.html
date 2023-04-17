@@ -12,13 +12,19 @@
  <body>
   <header>
    <div class="left"><a href="#">&lt; Team</a></div>
-   <div class="center">Team</div>
+   <div class="center">New Game</div>
    <div class="right"><a href="#" onclick="return saveGame();">Save</a></div>
   </header>
   <main>
     <input id="opponentName" placeholder="Opponent name" />
+    <br />
     <input id="gameDate" placeholder="Game date" />
-    <!-- home / away -->
+    <br />
+    Home game
+    <label class="switch">
+      <input id="isHomeGame" type="checkbox" checked="checked" />
+      <span class="slider"></span>
+    </label>
   </main>
   <script src="script.js"></script>
   <script src="newGame.js"></script>
