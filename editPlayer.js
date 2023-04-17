@@ -12,8 +12,8 @@ function renderPage(db, params) {
     document.querySelector('#playerName').value = player.name;
     document.querySelector('#playerNumber').value = player.number;
     document.querySelector('#isActive').checked = player.active;
-    document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + teamId);
-    document.querySelector('header > div.right > a').setAttribute('href', 'team.html?id=' + teamId);
+    document.querySelector('header > div.left > a').setAttribute('href', 'player.html?id=' + playerId);
+    document.querySelector('header > div.right > a').setAttribute('href', 'player.html?id=' + playerId);
     document.querySelector('main > a').setAttribute('href', 'team.html?id=' + teamId);
   };
 }
@@ -44,8 +44,9 @@ function deletePlayer() {
   if (confirm('Delete player?')) {
     // delete dependencies
     const transaction = db.transaction('players', 'readwrite');
-    const teamStore = transaction.objectStore('players');
-    teamStore.delete(Number(playerId));
-    window.location.replace('team.html?id=' + teamId);
+    const playerStore = transaction.objectStore('players');
+    playerStore.delete(Number(playerId));
+    return true;
   }
+  return false;
 }

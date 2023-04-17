@@ -5,8 +5,8 @@ function renderPage(db, params) {
   this.db = db;
   teamId = params.get('id');
   const transaction = db.transaction('teams', 'readonly');
-  const teamsStore = transaction.objectStore('teams');
-  teamsStore.get(Number(teamId)).onsuccess = function(event) {
+  const teamStore = transaction.objectStore('teams');
+  teamStore.get(Number(teamId)).onsuccess = function(event) {
     const team = event.target.result;
     document.querySelector('#teamName').value = team.name;
     document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + teamId);
@@ -26,16 +26,18 @@ function saveTeam() {
   };
 
   const transaction = db.transaction('teams', 'readwrite');
-  const teamsStore = transaction.objectStore('teams');
-  teamsStore.put(team);
+  const teamStore = transaction.objectStore('teams');
+  teamStore.put(team);
   return true;
 }
 
 function deleteTeam() {
   if (confirm('Delete team?')) {
-    // delete players
+    // delete dependencies
     const transaction = db.transaction('teams', 'readwrite');
-    const teamsStore = transaction.objectStore('teams');
-    teamsStore.delete(Number(teamId));
+    const teamStore = transaction.objectStore('teams');
+    teamStore.delete(Number(teamId));
+    return true;
   }
+  return false;
 }
