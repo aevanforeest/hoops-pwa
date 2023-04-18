@@ -99,7 +99,7 @@ main > span, main > div > span {
   margin: 4px;
 }
 
-main > div up li {
+main > div ul li {
   background-color: #ccc;
   margin: 4px;
   height: 48px;
