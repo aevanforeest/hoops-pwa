@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
       navigator.serviceWorker
-        .register('/serviceWorker.js')
+        .register('serviceWorker.js')
         .catch(err => console.log('[service worker]', err));
     });
   }
