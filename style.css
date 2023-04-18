@@ -56,6 +56,10 @@ hr {
   border-top: 2px solid #5b9bd5;
 }
 
+ul {
+  list-style: none;
+}
+
 nav {
   margin-bottom: 8px;
 }
@@ -63,7 +67,6 @@ nav {
 nav ul {
   display: grid;
   grid-auto-flow: column;
-  list-style: none;
 }
 
 nav ul li.selected {
@@ -100,8 +103,10 @@ ul#teamList {
   text-align: center;
 }
 
-main ul {
-  list-style: none;
+main ul li {
+  border: 1px solid #7f7f7f;
+  border-radius: 8px;
+  margin: 4px;
 }
 
 input {
@@ -115,7 +120,7 @@ ul#playerList, ul#gameList {
 }
 
 li.inactive a {
-  color: #cccccc;
+  color: #7f7f7f;
 }
 
 button {
