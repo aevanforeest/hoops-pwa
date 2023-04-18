@@ -99,6 +99,12 @@ main > span, main > div > span {
   margin: 4px;
 }
 
+main > div up li {
+  background-color: #ccc;
+  margin: 4px;
+  height: 48px;
+}
+
 ul#teamList {
   text-align: center;
 }
