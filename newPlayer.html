@@ -16,16 +16,19 @@
    <div class="right"><a href="#" onclick="return savePlayer();">Save</a></div>
   </header>
   <main>
-    <!--input id="playerImage" type="file" accept="image/*" /-->
-    <input id="playerName" type="text" placeholder="Player name" />
-    <br />
-    <input id="playerNumber" type="number" placeholder="Player number" />
-    <br />
-    Active
-    <label class="switch">
-      <input id="isActive" type="checkbox" checked="checked" />
-      <span class="slider"></span>
-    </label>
+    <span>
+      <input id="playerName" type="text" placeholder="Player name" />
+    </span>
+    <span>
+      <input id="playerNumber" type="number" placeholder="Player number" />
+    </span>
+    <span>
+      Active
+      <label class="switch">
+        <input id="isActive" type="checkbox" checked="checked" />
+        <span class="slider"></span>
+      </label>
+    </span>
   </main>
   <script src="script.js"></script>
   <script src="newPlayer.js"></script>

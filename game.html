@@ -16,17 +16,24 @@
    <div class="right"><a href="#">Edit</a></div>
   </header>
   <main>
-    <span id="opponentName"></span>
-    <br />
+    <span id="homeTeam"></span>
+    <span>vs</span>
+    <span id="awayTeam"></span>
     <span id="gameDate"></span>
-    <br />
-    <span id="isHomeGame"></span>
     <hr />
     <nav>
       <ul>
-        <li class="selected"><a href="#">Stats</a></li>
+        <li class="selected"><a href="#" onclick="return navBar(this);">Scoring</a></li>
+        <li><a href="#" onclick="return navBar(this);">Plays</a></li>
+        <li><a href="#" onclick="return navBar(this);">Stats</a></li>
       </ul>
     </nav>
+    <div id="scoring" class="selected">
+      SCORE
+    </div>
+    <div id="plays">
+      <ul id="playList"></ul>
+    </div>
     <div id="stats">
       ...
     </div>

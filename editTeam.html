@@ -16,13 +16,16 @@
    <div class="right"><a href="#" onclick="return saveTeam();">Save</a></div>
   </header>
   <main>
-    <!--
-    <input id="teamLogo" type="file" accept="image/*" />
-    <br />
-    -->
-    <input id="teamName" type="text" placeholder="Team name" />
+    <span>
+      <input id="teamLogo" type="file" accept="image/*" />
+    </span>
+    <span>
+      <input id="teamName" type="text" placeholder="Team name" />
+    </span>
     <hr />
-    <a href="teams.html" onclick="return deleteTeam();">[-] Delete Team</button>
+    <span>
+      <a href="teams.html" onclick="return deleteTeam();">[-] Delete Team</button>
+    </span>
   </main>
   <script src="script.js"></script>
   <script src="editTeam.js"></script>
