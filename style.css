@@ -118,11 +118,35 @@ li.inactive a {
   color: #cccccc;
 }
 
+button {
+  margin: 4px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 24px;
+}
+
+button.made {
+  background-color: #00b050;
+}
+
+button.missed {
+  background-color: #c00000;
+}
+
+button.stat {
+  background-color: #7f7f7f;
+}
+
+button.team {
+  background-color: #5b9bd5;
+}
+
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 52px;
+  height: 26px;
 }
 
 .switch input {
@@ -141,16 +165,16 @@ li.inactive a {
   background-color: #ccc;
   -webkit-transition: .25s;
   transition: .25s;
-  border-radius: 34px;
+  border-radius: 26px;
 }
 
 .slider:before {
   position: absolute;
   content: '';
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
   background-color: white;
   -webkit-transition: .25s;
   transition: .25s;
