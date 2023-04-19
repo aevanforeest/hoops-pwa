@@ -9,5 +9,6 @@
   ],
   "start_url": "https://aevanforeest.github.io/hoops-pwa/",
   "display": "standalone",
-  "theme_color": "#5b9bd5"
+  "theme_color": "#5b9bd5",
+  "orientation": "portrait"
 }
