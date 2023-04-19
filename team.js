@@ -51,13 +51,3 @@ function renderPage(db, params) {
     navBar(node);
   }
 }
-
-function navBar(e) {
-  var node = e.parentNode;
-  document.querySelector('nav .selected').classList.remove('selected');
-  node.classList.add('selected');
-  document.querySelector('main > div.selected').classList.remove('selected');
-  var index = Array.prototype.indexOf.call(node.parentNode.children, node);
-  document.querySelector('main > div:nth-of-type(' + (index + 1) + ')').classList.add('selected');
-  return false;
-}

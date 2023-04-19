@@ -1,4 +1,16 @@
-@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@font-face {
+  font-family: 'Nike TG';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://nike.com/static/ncss/4.1/dotcom/fonts/Nike-TG.woff2') format('woff2'),url('https://nike.com/static/ncss/4.1/dotcom/fonts/Nike-TG.woff') format('woff'),url('https://nike.com/static/ncss/4.1/dotcom/fonts/Nike-TG.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Nike Futura';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://nike.com/static/ncss/4.1/dotcom/fonts/Nike-Futura.woff2') format('woff2'),url('https://nike.com/static/ncss/4.1/dotcom/fonts/Nike-Futura.woff') format('woff'),url('https://nike.com/static/ncss/4.1/dotcom/fonts/Nike-Futura.ttf') format('truetype')
+}
 
 * {
   margin: 0;
@@ -12,7 +24,7 @@ html, body {
 
 body {
   background: #000000;
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
   font-size: 20px;
   background-color: #ffffff;
   text-align: center;
@@ -52,21 +64,22 @@ header > div.right {
 }
 
 hr {
-  margin: 8px 0px;
+  margin: 0;
   border-top: 2px solid #5b9bd5;
 }
 
-ul {
-  list-style: none;
-}
-
 nav {
-  margin-bottom: 8px;
+  margin: 8px 0;
 }
 
 nav ul {
   display: grid;
   grid-auto-flow: column;
+  list-style: none;
+}
+
+nav ul li {
+  border-bottom: 1px solid #f2f2f2;
 }
 
 nav ul li.selected {
@@ -85,28 +98,24 @@ main {
   flex-flow: column;
 }
 
-main > div {
+main > div.page {
   display: none;
   flex: 1 1 auto;
 }
 
-main > div.selected {
+main > div.page.selected {
   display: block;
 }
 
-main > span, main > div > span {
+span {
   display: block;
-  margin: 4px;
+  background-color: #f2f2f2;
+  margin: 4px 0;
+  padding: 8px;
 }
 
-main > div ul li {
-  background-color: #ccc;
-  margin: 4px;
-  height: 48px;
-}
-
-ul#teamList {
-  text-align: center;
+main ul {
+  list-style: none;
 }
 
 input {
@@ -115,12 +124,32 @@ input {
   width: 100%;
 }
 
+ul#teamList {
+  text-align: center;
+}
+
+ul#teamList li, ul#playerList li, ul#gameList li {
+  background-color: #f2f2f2;
+  margin: 4px 0;
+  padding: 8px;
+}
+
 ul#playerList, ul#gameList {
   text-align: left;
 }
 
-li.inactive a {
-  color: #7f7f7f;
+ul#playerList li.inactive a {
+  color: #cccccc;
+}
+
+a.button {
+  margin: 0 4px 8px 4px;
+  background-color: #5b9bd5;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  display: block;
+  font-size: 16px;
 }
 
 button {

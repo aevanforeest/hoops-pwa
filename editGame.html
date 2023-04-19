@@ -16,23 +16,24 @@
    <div class="right"><a href="#" onclick="return saveGame();">Save</a></div>
   </header>
   <main>
-    <span>
-      <input id="opponentName" type="text" placeholder="Opponent name" />
-    </span>
-    <span>
-      <input id="gameDate" type="date" placeholder="Game date" />
-    </span>
-    <span>
-      Home game
-      <label class="switch">
-        <input id="isHomeGame" type="checkbox" checked="checked" />
-        <span class="slider"></span>
-      </label>
-    </span>
-    <hr />
-    <span>
-      <a href="#" onclick="return deleteGame();">[-] Delete Game</button>
-    </span>
+    <div>
+      <span>
+        <input id="opponentName" type="text" placeholder="Opponent name" />
+      </span>
+      <span>
+        <input id="gameDate" type="date" placeholder="Game date" />
+      </span>
+      <span>
+        Home game
+        <label class="switch">
+          <input id="isHomeGame" type="checkbox" checked="checked" />
+          <span class="slider"></span>
+        </label>
+      </span>
+    </div>
+    <div>
+      <a id="deleteGame" class="button" href="#" onclick="return deleteGame();">[-] Delete Game</a>
+    </div>
   </main>
   <script src="script.js"></script>
   <script src="editGame.js"></script>

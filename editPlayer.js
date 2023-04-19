@@ -14,7 +14,7 @@ function renderPage(db, params) {
     document.querySelector('#isActive').checked = player.active;
     document.querySelector('header > div.left > a').setAttribute('href', 'player.html?id=' + playerId);
     document.querySelector('header > div.right > a').setAttribute('href', 'player.html?id=' + playerId);
-    document.querySelector('main > a').setAttribute('href', 'team.html?id=' + teamId + '#players');
+    document.querySelector('#deletePlayer').setAttribute('href', 'team.html?id=' + teamId + '#players');
   };
 }
 

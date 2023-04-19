@@ -16,24 +16,24 @@
    <div class="right"><a href="#" onclick="return savePlayer();">Save</a></div>
   </header>
   <main>
-    <!--input id="playerImage" type="file" accept="image/*" /-->
-    <span>
-      <input id="playerName" type="text" placeholder="Player name" />
-    </span>
-    <span>
-      <input id="playerNumber" type="number" placeholder="Player number" />
-    </span>
-    <span>
-      Active
-      <label class="switch">
-        <input id="isActive" type="checkbox" checked="checked" />
-        <span class="slider"></span>
-      </label>
-    </span>
-    <hr />
-    <span>
-      <a href="#" onclick="return deletePlayer();">[-] Delete Player</button>
-    </span>
+    <div>
+      <span>
+        <input id="playerName" type="text" placeholder="Player name" />
+      </span>
+      <span>
+        <input id="playerNumber" type="number" placeholder="Player number" />
+      </span>
+      <span>
+        Active
+        <label class="switch">
+          <input id="isActive" type="checkbox" checked="checked" />
+          <span class="slider"></span>
+        </label>
+      </span>
+    </div>
+    <div>
+      <a id="deletePlayer" class="button" href="#" onclick="return deletePlayer();">[-] Delete Player</a>
+    </div>
   </main>
   <script src="script.js"></script>
   <script src="editPlayer.js"></script>

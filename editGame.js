@@ -14,7 +14,7 @@ function renderPage(db, params) {
     document.querySelector('#isHomeGame').checked = game.home;
     document.querySelector('header > div.left > a').setAttribute('href', 'game.html?id=' + gameId);
     document.querySelector('header > div.right > a').setAttribute('href', 'game.html?id=' + gameId);
-    document.querySelector('main > a').setAttribute('href', 'team.html?id=' + teamId + '#games');
+    document.querySelector('#deleteGame').setAttribute('href', 'team.html?id=' + teamId + '#games');
   };
 }
 

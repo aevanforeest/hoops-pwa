@@ -33,3 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
     plays.createIndex('player', 'player');
   }
 });
+
+function navBar(e) {
+  var node = e.parentNode;
+  document.querySelector('nav li.selected').classList.remove('selected');
+  node.classList.add('selected');
+  document.querySelector('main div.page.selected').classList.remove('selected');
+  var index = Array.prototype.indexOf.call(node.parentNode.children, node);
+  document.querySelectorAll('main div.page')[index].classList.add('selected');
+  return false;
+}

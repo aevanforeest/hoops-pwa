@@ -1,5 +1,5 @@
 {
-  "name": "Hoops",
+  "name": "Just Keep Stats",
   "icons": [
     {
       "src": "512x512.png",
@@ -8,5 +8,6 @@
     }
   ],
   "start_url": "https://aevanforeest.github.io/hoops-pwa/",
-  "display": "standalone"
+  "display": "standalone",
+  "theme_color": "#5b9bd5"
 }

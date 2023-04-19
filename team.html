@@ -16,8 +16,9 @@
    <div class="right"><a href="#">Edit</a></div>
   </header>
   <main>
-    <span id="teamName"></span>
-    <hr />
+    <div>
+      <span id="teamName"></span>
+    </div>
     <nav>
       <ul>
         <li class="selected"><a href="#" onclick="return navBar(this);">Players</a></li>
@@ -25,26 +26,26 @@
         <li><a href="#" onclick="return navBar(this);">Stats</a></li>
       </ul>
     </nav>
-    <div id="players" class="selected">
-      <span>
-        <a href="#">[+] Add Player</a>
-      </span>
-      <span>
+    <div id="players" class="page selected">
+      <div>
+        <a class="button" href="#">[+] Add Player</a>
+      </div>
+      <div>
         <ul id="playerList"></ul>
-      </span>
+      </div>
     </div>
-    <div id="games">
-      <span>
-        <a href="#">[+] Add Game</a>
-      </span>
-      <span>
+    <div id="games" class="page">
+      <div>
+        <a class="button" href="#">[+] Add Game</a>
+      </div>
+      <div>
         <ul id="gameList"></ul>
-      </span>
+      </div>
     </div>
-    <div id="stats">
-      <span>
+    <div id="stats" class="page">
+      <div>
         ...
-      </span>
+      </div>
     </div>
   </main>
   <script src="script.js"></script>
