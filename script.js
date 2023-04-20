@@ -1,3 +1,5 @@
+const databaseName = 'HOOPS_DB';
+
 function renderPage() {}
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const params = new URLSearchParams(window.location.search);
-  var request = self.indexedDB.open('HOOPS_DB', 1);
+  var request = self.indexedDB.open(databaseName, 1);
 
   request.onsuccess = function(event) {
     const db = event.target.result;
