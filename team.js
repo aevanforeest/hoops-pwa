@@ -47,7 +47,6 @@ function renderPage(db, params) {
 
   if (location.hash == '#games') {
     const node = document.querySelector('nav li:nth-of-type(2) > a');
-    console.log(node);
     navBar(node);
   }
 }
