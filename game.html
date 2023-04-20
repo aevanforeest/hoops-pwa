@@ -17,8 +17,8 @@
   </header>
   <main>
     <div>
-      <span id="gameTitle"></span>
-      <span id="gameDate"></span>
+      <span id="homeTeam"></span>
+      <span id="awayTeam"></span>
     </div>
     <nav>
       <ul>
@@ -28,43 +28,61 @@
       </ul>
     </nav>
     <div id="scoring" class="page selected">
-      <div style="display: grid; grid-template-rows: 7fr 1fr 1fr; width: 100%; height: 100%;">
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr);">
-          <div style="display: grid; grid-template-rows: repeat(3, 1fr);">
-            <button class="made">2P</button>
-            <button class="made">3P</button>
-            <button class="made">FT</button>
+      <div style="display: grid; grid-template-rows: 7fr 1fr 1fr; width: 100%; height: 100%; gap: 4px;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;">
+          <div style="display: grid; grid-template-rows: repeat(3, 1fr); gap: 4px;">
+            <button id="2P" class="made">2P</button>
+            <button id="3P" class="made">3P</button>
+            <button id="FT" class="made">FT</button>
           </div>
-          <div style="display: grid; grid-template-rows: repeat(3, 1fr);">
-            <button class="missed">2P</button>
-            <button class="missed">3P</button>
-            <button class="missed">FT</button>
+          <div style="display: grid; grid-template-rows: repeat(3, 1fr); gap: 4px;">
+            <button id="!2P" class="missed">2P</button>
+            <button id="!3P" class="missed">3P</button>
+            <button id="!FT" class="missed">FT</button>
           </div>
-          <div style="display: grid; grid-template-rows: repeat(4, 1fr);">
-            <button class="stat">ORB</button>
-            <button class="stat">AST</button>
-            <button class="stat">TO</button>
-            <button class="stat">PF</button>
+          <div style="display: grid; grid-template-rows: repeat(4, 1fr); gap: 4px;">
+            <button id="ORB" class="stat">ORB</button>
+            <button id="AST" class="stat">AST</button>
+            <button id="TO" class="stat">TO</button>
+            <button id="PF" class="stat">PF</button>
           </div>
-          <div style="display: grid; grid-template-rows: repeat(4, 1fr);">
-            <button class="stat">DRB</button>
-            <button class="stat">STL</button>
-            <button class="stat">BLK</button>
+          <div style="display: grid; grid-template-rows: repeat(4, 1fr); gap: 4px;">
+            <button id="DRB" class="stat">DRB</button>
+            <button id="STL" class="stat">STL</button>
+            <button id="BLK" class="stat">BLK</button>
             <button class="stat">...</button>
           </div>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(5, 1fr);">
-          <button class="team">#1</button>
-          <button class="team">#2</button>
-          <button class="team">#3</button>
-          <button class="team">#4</button>
-          <button class="team">#5</button>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;">
+          <button id="6" class="team">#4</button>
+          <button id="7" class="team">#5</button>
+          <button id="8" class="team">#6</button>
+          <button id="12" class="team">#7</button>
+          <button id="13" class="team">#8</button>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
-          <button class="team">Substitute</button>
-          <button class="team">Opponent</button>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px;">
+          <button class="team" onclick="showSubstituteDialog();">Substitute</button>
+          <button id="" class="team">Opponent</button>
         </div>
       </div>
+      <!--
+      <div id="substituteDialog" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffffc0;" onclick="hideSubstituteDialog();">
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); width: 80%; height: 50%; margin: 10%;">
+          <button id="1" class="team">#1</button>
+          <button id="2" class="team">#2</button>
+          <button id="3" class="team">#3</button>
+          <button id="4" class="team">#4</button>
+          <button id="5" class="team">#5</button>
+          <button id="6" class="team bench">#6</button>
+          <button id="7" class="team bench">#7</button>
+          <button id="8" class="team bench">#8</button>
+          <button id="9" class="team bench">#9</button>
+          <button id="10" class="team bench">#10</button>
+          <button id="11" class="team bench">#11</button>
+          <button id="12" class="team bench">#12</button>
+        </div>
+      </div>
+      -->
     </div>
     <div id="plays" class="page">
       <div>
