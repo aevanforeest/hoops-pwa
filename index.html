@@ -13,9 +13,8 @@
  <body>
   <div style="display: flex; align-items: center; height: 100vh;">
    <img src="justkeepstats.png" style="max-width: 100%; max-height: 100%; margin: auto;"/>
-   <span><a href="#" onclick="caches.delete('HOOPS_CACHE');">Delete cache</a></span>
-   <span><a href="#" onclick="caches.delete('HOOPS_CACHE-v1');">Delete cache</a></span>
-   <span><a href="#" onclick="indexedDB.deleteDatabase('HOOPS_DB');">Delete database</a></span>
+   <span><a href="#" onclick="caches.delete('HOOPS_CACHE'); return false;">Delete cache</a></span>
+   <span><a href="#" onclick="indexedDB.deleteDatabase('HOOPS_DB'); return false;">Delete database</a></span>
   </div>
  </body>
 </html>
