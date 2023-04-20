@@ -28,41 +28,35 @@
       </ul>
     </nav>
     <div id="scoring" class="page selected">
-      <div style="display: grid; grid-template-rows: 7fr 1fr 1fr; width: 100%; height: 100%; gap: 4px;">
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;">
-          <div style="display: grid; grid-template-rows: repeat(3, 1fr); gap: 4px;">
-            <button id="2P" class="made">2P</button>
-            <button id="3P" class="made">3P</button>
-            <button id="FT" class="made">FT</button>
+      <div style="display: grid; grid-template-rows: 7fr 1fr 1fr; width: 100%; height: 100%;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr);">
+          <div style="display: grid; grid-template-rows: repeat(3, 1fr);">
+            <button id="2P" class="green">2P</button>
+            <button id="3P" class="green">3P</button>
+            <button id="FT" class="green">FT</button>
           </div>
-          <div style="display: grid; grid-template-rows: repeat(3, 1fr); gap: 4px;">
-            <button id="!2P" class="missed">2P</button>
-            <button id="!3P" class="missed">3P</button>
-            <button id="!FT" class="missed">FT</button>
+          <div style="display: grid; grid-template-rows: repeat(3, 1fr);">
+            <button id="!2P" class="red">2P</button>
+            <button id="!3P" class="red">3P</button>
+            <button id="!FT" class="red">FT</button>
           </div>
-          <div style="display: grid; grid-template-rows: repeat(4, 1fr); gap: 4px;">
-            <button id="ORB" class="stat">ORB</button>
-            <button id="AST" class="stat">AST</button>
-            <button id="TO" class="stat">TO</button>
-            <button id="PF" class="stat">PF</button>
+          <div style="display: grid; grid-template-rows: repeat(4, 1fr);">
+            <button id="ORB" class="grey">ORB</button>
+            <button id="AST" class="grey">AST</button>
+            <button id="TO" class="grey">TO</button>
+            <button id="PF" class="grey">PF</button>
           </div>
-          <div style="display: grid; grid-template-rows: repeat(4, 1fr); gap: 4px;">
-            <button id="DRB" class="stat">DRB</button>
-            <button id="STL" class="stat">STL</button>
-            <button id="BLK" class="stat">BLK</button>
-            <button class="stat">...</button>
+          <div style="display: grid; grid-template-rows: repeat(4, 1fr);">
+            <button id="DRB" class="grey">DRB</button>
+            <button id="STL" class="grey">STL</button>
+            <button id="BLK" class="grey">BLK</button>
           </div>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;">
-          <button id="6" class="team">#4</button>
-          <button id="7" class="team">#5</button>
-          <button id="8" class="team">#6</button>
-          <button id="12" class="team">#7</button>
-          <button id="13" class="team">#8</button>
+        <div id="inGame" style="display: grid; grid-template-columns: repeat(5, 1fr);">
         </div>
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px;">
-          <button class="team" onclick="showSubstituteDialog();">Substitute</button>
-          <button id="" class="team">Opponent</button>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+          <button class="blue">Substitute</button>
+          <button class="blue">Opponent</button>
         </div>
       </div>
       <!--

@@ -49,11 +49,6 @@ header > div.right {
   text-align: right;
 }
 
-hr {
-  margin: 0;
-  border-top: 2px solid #5b9bd5;
-}
-
 nav {
   margin: 8px 0;
 }
@@ -65,7 +60,7 @@ nav ul {
 }
 
 nav ul li {
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid #c0c0c0;
 }
 
 nav ul li.selected {
@@ -125,7 +120,7 @@ ul#playerList, ul#gameList {
 }
 
 ul#playerList li.inactive a {
-  color: #cccccc;
+  color: #c0c0c0;
 }
 
 div.fab {
@@ -151,35 +146,40 @@ div.fab.red a {
 
 button {
   margin: 4px;
-  border: 2px solid;
+  border: none;
   border-radius: 8px;
   color: #fff;
   font-size: 24px;
 }
 
-button.made {
+button.green, button.red {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+button.green {
   background-color: #00b050;
-  border-color: #00b050;
 }
 
-button.missed {
+button.red {
   background-color: #c00000;
-  border-color: #c00000;
 }
 
-button.stat {
-  background-color: #7f7f7f;
-  border-color: #7f7f7f;
+button.grey {
+  background-color: #f2f2f2;
+  color: #000;
+  border: 1px solid #c0c0c0;
+  padding: -1px;
 }
 
-button.team {
+button.blue {
   background-color: #5b9bd5;
   border-color: #5b9bd5;
 }
 
-button.team.bench {
+button.white {
   background-color: #ffffff;
-  border-color: #5b9bd5;
+  border: 1px solid #5b9bd5;
   color: #5b9bd5;
 }
 
