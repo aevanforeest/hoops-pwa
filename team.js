@@ -12,8 +12,8 @@ function renderPage(db, params) {
     const team = event.target.result;
     document.querySelector('#teamName').innerHTML = team.name;
     document.querySelector('header > div.right > a').setAttribute('href', 'editTeam.html?id=' + teamId);
-    document.querySelector('main > div#players a').setAttribute('href', 'newPlayer.html?id=' + teamId);
-    document.querySelector('main > div#games a').setAttribute('href', 'newGame.html?id=' + teamId);
+    document.querySelector('a#addPlayer').setAttribute('href', 'newPlayer.html?id=' + teamId);
+    document.querySelector('a#addGame').setAttribute('href', 'newGame.html?id=' + teamId);
     };
 
   // Players page

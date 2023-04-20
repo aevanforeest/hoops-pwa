@@ -16,7 +16,7 @@ function saveTeam() {
   };
 
   const transaction = db.transaction('teams', 'readwrite');
-  const teamsStore = transaction.objectStore('teams');
-  teamsStore.add(team);
+  const teamStore = transaction.objectStore('teams');
+  teamStore.add(team);
   return true;
 }

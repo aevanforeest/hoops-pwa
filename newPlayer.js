@@ -24,7 +24,7 @@ function savePlayer() {
   };
 
   const transaction = db.transaction('players', 'readwrite');
-  const playersStore = transaction.objectStore('players');
-  playersStore.add(player);
+  const playerStore = transaction.objectStore('players');
+  playerStore.add(player);
   return true;
 }
