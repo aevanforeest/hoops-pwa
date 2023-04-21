@@ -22,6 +22,7 @@ function renderPage(db, params) {
   playerTeamIndex.getAll(Number(teamId)).onsuccess = function(event) {
     const players = event.target.result;
     const list = document.querySelector('ul#playerList');
+    players.sort((a, b) => Number(a.number) - Number(b.number));
     players.forEach(function(player) {
       const item = document.createElement('li');
       item.setAttribute('class', player.active ? 'active': 'inactive');
@@ -36,6 +37,7 @@ function renderPage(db, params) {
   const gameTeamIndex = gameStore.index('team');
   gameTeamIndex.getAll(Number(teamId)).onsuccess = function(event) {
     const games = event.target.result;
+    games.sort((a, b) => a.date.localeCompare(b.date));
     const list = document.querySelector('ul#gameList');
     games.forEach(function(game) {
       const item = document.createElement('li');

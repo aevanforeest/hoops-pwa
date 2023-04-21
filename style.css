@@ -109,14 +109,14 @@ ul#teamList {
   text-align: center;
 }
 
-ul#teamList li, ul#playerList li, ul#gameList li {
+ul#playerList, ul#gameList, ul#playList {
+  text-align: left;
+}
+
+ul#teamList li, ul#playerList li, ul#gameList li, ul#playList li {
   background-color: #f2f2f2;
   margin: 4px 0;
   padding: 8px;
-}
-
-ul#playerList, ul#gameList {
-  text-align: left;
 }
 
 ul#playerList li.inactive a {

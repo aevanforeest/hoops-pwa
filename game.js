@@ -20,8 +20,11 @@ function renderPage(db, params) {
       const teamPlayerIndex = playerStore.index('team');
       teamPlayerIndex.getAll(Number(team.id)).onsuccess = function(event) {
         players = event.target.result;
+        // add all active team players to the bench
         players.forEach(function(player) {
-          onBench.push(player);
+          if (player.active) {
+            onBench.push(player);
+          }
         });
         const playStore = transaction.objectStore('plays');
         const gamePlayIndex = playStore.index('game');
@@ -29,31 +32,11 @@ function renderPage(db, params) {
           plays = event.target.result;
           const list = document.querySelector('#playList');
           plays.forEach(function(play) {
-            console.log(play);
-            const player = players.find(p => p.id == play.player);
-            const item = document.createElement('li');
-            switch (play.type) {
-              case '2P':
-                item.innerHTML = '2 points by #' + player.number + ' ' + player.name;
-                break;
-              case 'IN':
-                item.innerHTML = 'Substitute in #' + player.number + ' ' + player.name;
-                var index = onBench.findIndex(p => p.id == play.player);
-                inGame.push(onBench.splice(index, 1)[0]);
-                break;
-              case 'OUT':
-                item.innerHTML = 'Substitute out #' + player.number + ' ' + player.name;
-                var index = inGame.findIndex(p => p.id == play.player);
-                onBench.push(inGame.splice(index, 1)[0]);
-                break;
-              default:
-                console.log('UNIMPLEMENTED ACTION TYPE');
-            }
-            list.prepend(item);
+            processPlay(play);
           });
 
           // for testing -->
-          while (inGame.length < 5) {
+          while (onBench.length > 0 && inGame.length < 5) {
             inGame.push(onBench.pop());
           }
           // <-- for testing
@@ -77,9 +60,12 @@ function renderPage(db, params) {
                   'game': Number(gameId),
                   'player': Number(playerId),
                 };
+                // store play
                 const transaction = db.transaction('plays', 'readwrite');
                 const playStore = transaction.objectStore('plays');
                 playStore.add(play);
+                // process play
+                processPlay(play);
                 playType = null;
               }
             }
@@ -100,168 +86,64 @@ function renderPage(db, params) {
       playType = e.target.id;
     }
   });
-
-/*
-  const transaction = db.transaction(['teams', 'games', 'plays'], 'readonly');
-  const gameStore = transaction.objectStore('games');
-  gameStore.get(Number(gameId)).onsuccess = function(event) {
-    const game = event.target.result;
-    document.querySelector(!game.home ? '#homeTeam' : '#awayTeam').innerHTML = game.name;
-    const teamId = game.team;
-    const teamStore = transaction.objectStore('teams');
-    teamStore.get(Number(teamId)).onsuccess = function(event) {
-      const team = event.target.result;
-      document.querySelector(game.home ? '#homeTeam' : '#awayTeam').innerHTML = team.name;
-      document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + game.team + '#games');
-      document.querySelector('header > div.right > a').setAttribute('href', 'editGame.html?id=' + game.id);
-      };
-  };
-*/
-/*
-  // Plays page
-  const playStore = transaction.objectStore('plays');
-  const playGameIndex = playStore.index('game');
-  playGameIndex.getAll(Number(gameId)).onsuccess = function(event) {
-    const plays = event.target.result;
-    const list = document.querySelector('ul#playList');
-    plays.forEach(function(play) {
-      const item = document.createElement('li');
-      item.innerHTML = play.type + play.player;
-      list.append(item);
-    });
-  };
-
-  updateScore();
-
-  const statButtons = document.querySelectorAll('button.made[id], button.missed[id], button.stat[id]');
-  statButtons.forEach(function(button) {
-    button.onclick = function(e) {
-      playType = e.target.id;
-    }
-  });
-
-  const teamButtons = document.querySelectorAll('button.team[id]');
-  teamButtons.forEach(function(button) {
-    button.onclick = function(e) {
-      playerId = e.target.id;
-      if (playType != null) {
-        const play = {
-          'type': playType,
-          'game': Number(gameId),
-          'player': Number(playerId),
-        };
-        const transaction = db.transaction('plays', 'readwrite');
-        const playStore = transaction.objectStore('plays');
-        playStore.add(play);
-        if (playType == '2P' || playType == '3P' || playType == 'FT') {
-          updateScore();
-        }
-        const list = document.querySelector('ul#playList');
-        const item = document.createElement('li');
-        item.innerHTML = play.type + play.player;
-        list.append(item);
-        playType = null;
-      }
-    }
-  });
-
-  const subButtons = document.querySelectorAll('div#substituteDialog button.team');
-  subButtons.forEach(function(button) {
-    button.onclick = function(e) {
-      if (e.target.classList.contains('bench')) {
-        e.target.classList.remove('bench');
-      } else {
-        e.target.classList.add('bench');
-      }
-      e.stopPropagation();
-    }
-  });
-*/
 }
-/*
-function updateScore() {
-  var teamScore = 0, opponentScore = 0;
-  const transaction = db.transaction('plays', 'readonly');
-  const playStore = transaction.objectStore('plays');
-  const playGameIndex = playStore.index('game');
-  playGameIndex.getAll(Number(gameId)).onsuccess = function(event) {
-    const plays = event.target.result;
-    plays.forEach(function(play) {
-      var score = 0;
-      if (play.type == '2P') {
-        score = 2;
-      } else if (play.type == '3P') {
-        score = 3;
-      } else if (play.type == 'FT') {
-        score = 1;
-      }
-      if (score) {
-        if (Number(play.player)) {
-          teamScore += score;
-        } else {
-          opponentScore += score;
-        }
-      }
-    });
-    console.log(teamScore, opponentScore);
+
+function processPlay(play) {
+  const list = document.querySelector('#playList');
+  const player = players.find(p => p.id == play.player);
+  const item = document.createElement('li');
+  switch (play.type) {
+    case '2P':
+      item.innerHTML = '<b>2P by #' + player.number + ' ' + player.name + '</b>';
+      break;
+    case '!2P':
+      item.innerHTML = 'Missed 2P by #' + player.number + ' ' + player.name;
+      break;
+    case '3P':
+      item.innerHTML = '<b>3P by #' + player.number + ' ' + player.name + '</b>';
+      break;
+    case '!3P':
+      item.innerHTML = 'Missed 3P by #' + player.number + ' ' + player.name;
+      break;
+    case 'FT':
+      item.innerHTML = '<b>FT by #' + player.number + ' ' + player.name + '</b>';
+      break;
+    case '!FT':
+      item.innerHTML = 'Missed FT by #' + player.number + ' ' + player.name;
+      break;
+    case 'ORB':
+      item.innerHTML = 'Offensive rebound by #' + player.number + ' ' + player.name;
+      break;
+    case 'DRB':
+      item.innerHTML = 'Defensive rebound by #' + player.number + ' ' + player.name;
+      break;
+    case 'AST':
+      item.innerHTML = 'Assist by #' + player.number + ' ' + player.name;
+      break;
+    case 'STL':
+      item.innerHTML = 'Steal by #' + player.number + ' ' + player.name;
+      break;
+    case 'TO':
+      item.innerHTML = 'Turnover by #' + player.number + ' ' + player.name;
+      break;
+    case 'BLK':
+      item.innerHTML = 'Block by #' + player.number + ' ' + player.name;
+      break;
+    case 'PF':
+      item.innerHTML = 'Personal foul by #' + player.number + ' ' + player.name;
+      break;
+    case 'IN':
+      item.innerHTML = 'Substitute in #' + player.number + ' ' + player.name;
+      // var index = onBench.findIndex(p => p.id == play.player);
+      // inGame.push(onBench.splice(index, 1)[0]);
+      break;
+    case 'OUT':
+      item.innerHTML = 'Substitute out #' + player.number + ' ' + player.name;
+      // var index = inGame.findIndex(p => p.id == play.player);
+      // onBench.push(inGame.splice(index, 1)[0]);
+      break;
+    default:
+      item.innerHTML = 'UNKNOWN PLAY TYPE';
   }
-}
-
-function showSubstituteDialog() {
-  document.querySelector('#substituteDialog').style.display = 'block';
-}
-
-function hideSubstituteDialog() {
-  document.querySelector('#substituteDialog').style.display = 'none';
-}
-*/
-
-function page(db, params) {
-  var gameId = params.get('id');
-
-  var game, team, players, plays;
-  var inGame = [], onBench = [];
-
-  const transaction = db.transaction(['games', 'teams', 'players', 'plays'], 'readonly');
-  const gameStore = transaction.objectStore('games');
-  gameStore.get(Number(gameId)).onsuccess = function(event) {
-    game = event.target.result;
-    const teamStore = transaction.objectStore('teams');
-    teamStore.get(Number(game.team)).onsuccess = function(event) {
-      team = event.target.result;
-      const playerStore = transaction.objectStore('players');
-      const teamPlayerIndex = playerStore.index('team');
-      teamPlayerIndex.getAll(Number(team.id)).onsuccess = function(event) {
-        players = event.target.result;
-        players.forEach(function(player) {
-          onBench.push(player);
-        });
-        const playStore = transaction.objectStore('plays');
-        const gamePlayIndex = playStore.index('game');
-        gamePlayIndex.getAll(Number(gameId)).onsuccess = function(event) {
-          plays = event.target.result;
-          const list = document.querySelector('#playList');
-          plays.forEach(function(play) {
-            const item = document.createElement('li');
-            switch (play.type) {
-              case '2P':
-                li.innerHTML = '2 points by #' + player.number + ' ' + player.name;
-                break;
-              case 'IN':
-                li.innerHTML = 'Substitute in #' + player.number + ' ' + player.name;
-                var index = onBench.findIndex(p => p.id == play.player);
-                inGame.push(onBench.splice(index, 1));
-                break;
-              case 'OUT':
-                li.innerHTML = 'Substitute out #' + player.number + ' ' + player.name;
-                var index = inGame.findIndex(p => p.id == play.player);
-                onBench.push(inGame.splice(index, 1));
-                break;
-            }
-            list.prepend(li);
-          });
-        }
-      };
-    };
-  };
+  list.prepend(item);
 }

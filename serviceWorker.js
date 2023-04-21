@@ -37,7 +37,6 @@ self.addEventListener('fetch', event => {
     caches.match(event.request, { ignoreSearch: true })
     .then(response => {
       if (response) {
-        console.log('cached', event.request);
         return response;
       }
       return fetch(event.request);
