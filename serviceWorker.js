@@ -1,4 +1,4 @@
-const cacheName = 'HOOPS_CACHE';
+const cacheName = 'HOOPS_CACHE-v1';
 
 self.addEventListener('install', event => {
   event.waitUntil(
