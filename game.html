@@ -28,7 +28,14 @@
       </ul>
     </nav>
     <div id="scoring" class="page selected">
-      <div style="display: grid; grid-template-rows: 7fr 1fr 1fr; width: 100%; height: 100%;">
+      <div class="fab blue">
+        <a id="toggleMicrophone" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 960 960" width="40">
+            <path fill="#ffffff" d="M480 633q-43 0-72-30.917-29-30.916-29-75.083V276q0-41.667 29.441-70.833Q437.882 176 479.941 176t71.559 29.167Q581 234.333 581 276v251q0 44.167-29 75.083Q523 633 480 633Zm0-228Zm-30 531V800q-106-11-178-89t-72-184h60q0 91 64.288 153t155.5 62Q571 742 635.5 680 700 618 700 527h60q0 106-72 184t-178 89v136h-60Zm30-363q18 0 29.5-13.5T521 527V276q0-17-11.788-28.5Q497.425 236 480 236q-17.425 0-29.212 11.5Q439 259 439 276v251q0 19 11.5 32.5T480 573Z"/>
+          </svg>
+        </a>
+      </div>
+      <div style="display: grid; grid-template-rows: 6fr 1fr 1fr; width: 100%; height: 100%;">
         <div style="display: grid; grid-template-columns: repeat(4, 1fr);">
           <div style="display: grid; grid-template-rows: repeat(3, 1fr);">
             <button id="2P" class="green">2P</button>
@@ -53,30 +60,21 @@
           </div>
         </div>
         <div id="inGame" style="display: grid; grid-template-columns: repeat(5, 1fr);">
+          <button class="white" />
+          <button class="white" />
+          <button class="white" />
+          <button class="white" />
+          <button class="white" />
         </div>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
-          <button class="blue">Substitute</button>
-          <button class="blue">Opponent</button>
+          <button id="substitute" class="blue">Substitute</button>
+          <button id="opponent" class="blue">Opponent</button>
         </div>
       </div>
-      <!--
-      <div id="substituteDialog" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffffc0;" onclick="hideSubstituteDialog();">
-        <div style="display: grid; grid-template-columns: repeat(5, 1fr); width: 80%; height: 50%; margin: 10%;">
-          <button id="1" class="team">#1</button>
-          <button id="2" class="team">#2</button>
-          <button id="3" class="team">#3</button>
-          <button id="4" class="team">#4</button>
-          <button id="5" class="team">#5</button>
-          <button id="6" class="team bench">#6</button>
-          <button id="7" class="team bench">#7</button>
-          <button id="8" class="team bench">#8</button>
-          <button id="9" class="team bench">#9</button>
-          <button id="10" class="team bench">#10</button>
-          <button id="11" class="team bench">#11</button>
-          <button id="12" class="team bench">#12</button>
+      <div id="substituteDialog" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffffc0;">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); width: 100%; height: 100%; padding: 15%;">
         </div>
       </div>
-      -->
     </div>
     <div id="plays" class="page">
       <div>
