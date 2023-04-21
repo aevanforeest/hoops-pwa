@@ -62,13 +62,13 @@ function renderPage(db, params) {
           const list = document.querySelector('#playList');
           plays.forEach(function(play) {
             renderPlay(play);
+            // process substitutes
             if (play.type == 'IN') {
               inGame.push(onBench.splice(onBench.findIndex(p => p.id == play.player), 1)[0]);
             } else if (play.type == 'OUT') {
               onBench.push(inGame.splice(inGame.findIndex(p => p.id == play.player), 1)[0]);
             }
           });
-
           updatePlayerButtons();
         }
       };
@@ -78,18 +78,18 @@ function renderPage(db, params) {
     document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + game.team + '#games');
     document.querySelector('header > div.right > a').setAttribute('href', 'editGame.html?id=' + game.id);
     document.querySelector('#substitute').onclick = showSubstituteDialog;
-    // document.querySelector('#toggleMicrophone').onclick = function(e) {
-    //   const d = document.querySelector('#toggleMicrophone').parentNode;
-    //   if (d.classList.contains('blue')) {
-    //     d.classList.remove('blue');
-    //     d.classList.add('red');
-    //     recognition.start();
-    //   } else {
-    //     d.classList.remove('red');
-    //     d.classList.add('blue');
-    //     recognition.stop();
-    //   }
-    // }
+    document.querySelector('#toggleMicrophone').onclick = function(e) {
+      const d = document.querySelector('div.fab:has(#toggleMicrophone)');
+      if (d.classList.contains('blue')) {
+        d.classList.remove('blue');
+        d.classList.add('red');
+        // recognition.start();
+      } else {
+        d.classList.remove('red');
+        d.classList.add('blue');
+        // recognition.stop();
+      }
+    }
   };
 
   const playButtons = document.querySelectorAll('button.green[id], button.red[id], button.grey[id]');
@@ -102,8 +102,7 @@ function renderPage(db, params) {
 
 function updatePlayerButtons() {
   inGame.sort((a, b) => Number(a.number) - Number(b.number));
-  const container = document.querySelector('#inGame');
-  const buttons = container.querySelectorAll('button');
+  const buttons = document.querySelectorAll('#inGame button');
   console.assert(buttons.length == 5);
   for (var i = 0; i < 5; i++) {
     const button = buttons[i];
@@ -128,7 +127,6 @@ function updatePlayerButtons() {
         playType = null;
       }
     }
-    container.append(button);
   }
 }
 
@@ -237,7 +235,6 @@ function showSubstituteDialog() {
           };
           storePlay(play);
         }
-        console.log(id);
         e.stopPropagation();
       }
       container.append(button);
