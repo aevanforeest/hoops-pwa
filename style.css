@@ -74,7 +74,7 @@ nav ul li.selected a {
 
 main {
   height: calc(100vh - 40px) !important;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   flex-flow: column;
 }
@@ -82,6 +82,7 @@ main {
 main > div.page {
   display: none;
   flex: 1 1 auto;
+  overflow: scroll;
 }
 
 main > div.page.selected {
@@ -125,6 +126,16 @@ ul#teamList li, ul#playerList li, ul#gameList li, ul#playList li {
 
 ul#playerList li.inactive a {
   color: #c0c0c0;
+}
+
+div#statGrid div {
+  background-color: #f2f2f2;
+  margin: 4px 0;
+  padding: 8px;
+}
+
+div#statGrid div:nth-of-type(20n + 1) {
+  text-align: left;
 }
 
 div.fab {

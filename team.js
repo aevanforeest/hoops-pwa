@@ -6,7 +6,7 @@ function renderPage(db, params) {
   teamId = params.get('id');
 
   // Main page
-  const transaction = db.transaction(['teams', 'players', 'games'], 'readonly');
+  const transaction = db.transaction(['teams', 'players', 'games', 'plays'], 'readonly');
   const teamStore = transaction.objectStore('teams');
   teamStore.get(Number(teamId)).onsuccess = function(event) {
     const team = event.target.result;
@@ -47,8 +47,38 @@ function renderPage(db, params) {
     });
   };
 
+  // Stats page
+  const playStore = transaction.objectStore('plays');
+  const playPlayerIndex = playStore.index('player');
+  const grid = document.querySelector('div#statGrid');
+  playerTeamIndex.getAll(Number(teamId)).onsuccess = function(event) {
+    const players = event.target.result;
+    const list = document.querySelector('ul#playerList');
+    players.sort((a, b) => Number(a.number) - Number(b.number));
+    players.forEach(function(player) {
+      playPlayerIndex.getAll(Number(player.id)).onsuccess = function(event) {
+        const plays = event.target.result;
+        //
+        {
+          const item = document.createElement('div');
+          item.style.gridColumn = 1;
+          item.innerHTML = '#' + player.number + ' ' + player.name;
+          grid.append(item);
+        }
+        for (var i = 0; i < 19; i++) {
+          const item = document.createElement('div');
+          item.innerHTML = '0.0';
+          grid.append(item);
+        }
+      }
+    });
+  }
+
   if (location.hash == '#games') {
     const node = document.querySelector('nav li:nth-of-type(2) > a');
+    navBar(node);
+  } else if (location.hash == '#stats') {
+    const node = document.querySelector('nav li:nth-of-type(3) > a');
     navBar(node);
   }
 }
