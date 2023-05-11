@@ -113,6 +113,14 @@ function renderPage(db, params) {
       playType = e.target.id;
     }
   });
+
+  if (location.hash == '#plays') {
+    const node = document.querySelector('nav li:nth-of-type(2) > a');
+    navBar(node);
+  } else if (location.hash == '#stats') {
+    const node = document.querySelector('nav li:nth-of-type(3) > a');
+    navBar(node);
+  }
 }
 
 function updatePlayerButtons() {
