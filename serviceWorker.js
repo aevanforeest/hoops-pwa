@@ -1,4 +1,7 @@
-const cacheName = 'HOOPS_CACHE-v2';
+//
+// Copyright (c) 2023, Arnoud van Foreest. All rights reserved.
+//
+const cacheName = 'HOOPS_CACHE';
 
 self.addEventListener('install', event => {
   event.waitUntil(

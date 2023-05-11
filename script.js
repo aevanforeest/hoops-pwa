@@ -1,3 +1,6 @@
+//
+// Copyright (c) 2023, Arnoud van Foreest. All rights reserved.
+//
 const databaseName = 'HOOPS_DB';
 
 function renderPage() {}
