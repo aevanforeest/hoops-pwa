@@ -40,16 +40,19 @@ function renderPage(db, params) {
   const gameId = params.get('id');
   const transaction = db.transaction(['games', 'teams', 'players', 'plays'], 'readonly');
   const gameStore = transaction.objectStore('games');
+  // get game from DB
   gameStore.get(Number(gameId)).onsuccess = function(event) {
     game = event.target.result;
     const teamStore = transaction.objectStore('teams');
+    // get game team from DB
     teamStore.get(Number(game.team)).onsuccess = function(event) {
       team = event.target.result;
       const playerStore = transaction.objectStore('players');
       const teamPlayerIndex = playerStore.index('team');
+      // get team players from DB
       teamPlayerIndex.getAll(Number(team.id)).onsuccess = function(event) {
         players = event.target.result;
-        // add all active team players to the bench
+        // add players to bench
         players.forEach(function(player) {
           if (player.active) {
             onBench.push(player);
@@ -57,6 +60,7 @@ function renderPage(db, params) {
         });
         const playStore = transaction.objectStore('plays');
         const gamePlayIndex = playStore.index('game');
+        // get game plays from DB
         gamePlayIndex.getAll(Number(gameId)).onsuccess = function(event) {
           plays = event.target.result;
           const list = document.querySelector('#playList');
@@ -78,6 +82,17 @@ function renderPage(db, params) {
     document.querySelector('header > div.left > a').setAttribute('href', 'team.html?id=' + game.team + '#games');
     document.querySelector('header > div.right > a').setAttribute('href', 'editGame.html?id=' + game.id);
     document.querySelector('#substitute').onclick = showSubstituteDialog;
+    document.querySelector('#opponent').onclick = function(e) {
+      if (playType != null) {
+        const play = {
+          'type': playType,
+          'game': Number(game.id),
+          // 'player'
+        };
+        storePlay(play);
+        playType = null;
+      }
+    }
     document.querySelector('#toggleMicrophone').onclick = function(e) {
       const d = document.querySelector('div.fab:has(#toggleMicrophone)');
       if (d.classList.contains('blue')) {
@@ -142,56 +157,62 @@ function storePlay(play) {
 
 function renderPlay(play) {
   const list = document.querySelector('#playList');
-  const player = players.find(p => p.id == play.player);
+  var who;
+  if (play.player != undefined) {
+    const player = players.find(p => p.id == play.player);
+    who = '#' + player.number + ' ' + player.name;
+  } else {
+    who = 'opponent';
+  }
   const item = document.createElement('li');
   switch (play.type) {
     case '2P':
-      item.innerHTML = '<b>2P by #' + player.number + ' ' + player.name + '</b>';
+      item.innerHTML = '<b>2P by ' + who + '</b>';
       teamScore += 2;
       break;
     case '!2P':
-      item.innerHTML = 'Missed 2P by #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Missed 2P by ' + who;
       break;
     case '3P':
-      item.innerHTML = '<b>3P by #' + player.number + ' ' + player.name + '</b>';
+      item.innerHTML = '<b>3P by ' + who + '</b>';
       teamScore += 3;
       break;
     case '!3P':
-      item.innerHTML = 'Missed 3P by #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Missed 3P by ' + who;
       break;
     case 'FT':
-      item.innerHTML = '<b>FT by #' + player.number + ' ' + player.name + '</b>';
+      item.innerHTML = '<b>FT by ' + who + '</b>';
       teamScore += 1;
       break;
     case '!FT':
-      item.innerHTML = 'Missed FT by #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Missed FT by ' + who;
       break;
     case 'ORB':
-      item.innerHTML = 'Offensive rebound by #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Offensive rebound by ' + who;
       break;
     case 'DRB':
-      item.innerHTML = 'Defensive rebound by #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Defensive rebound by ' + who;
       break;
     case 'AST':
-      item.innerHTML = 'Assist by #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Assist by ' + who;
       break;
     case 'STL':
-      item.innerHTML = 'Steal by #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Steal by ' + who;
       break;
     case 'TO':
-      item.innerHTML = 'Turnover by #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Turnover by ' + who;
       break;
     case 'BLK':
-      item.innerHTML = 'Block by #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Block by ' + who;
       break;
     case 'PF':
-      item.innerHTML = 'Personal foul by #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Personal foul by ' + who;
       break;
     case 'IN':
-      item.innerHTML = 'Substitute in #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Substitute in ' + who;
       break;
     case 'OUT':
-      item.innerHTML = 'Substitute out #' + player.number + ' ' + player.name;
+      item.innerHTML = 'Substitute out ' + who;
       break;
   }
   list.prepend(item);
