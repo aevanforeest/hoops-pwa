@@ -43,5 +43,6 @@ function navBar(e) {
   document.querySelector('main div.page.selected').classList.remove('selected');
   var index = Array.prototype.indexOf.call(node.parentNode.children, node);
   document.querySelectorAll('main div.page')[index].classList.add('selected');
-  return false;
+  // return false;
+  return true;
 }

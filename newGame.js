@@ -26,5 +26,9 @@ function saveGame() {
   const transaction = db.transaction('games', 'readwrite');
   const gameStore = transaction.objectStore('games');
   gameStore.add(game);
-  return true;
+  // return true;
+  transaction.oncomplete = function() {
+    location.replace('team.html?id=' + teamId + '#games');
+  }
+  return false;
 }

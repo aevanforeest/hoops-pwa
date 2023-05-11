@@ -18,5 +18,9 @@ function saveTeam() {
   const transaction = db.transaction('teams', 'readwrite');
   const teamStore = transaction.objectStore('teams');
   teamStore.add(team);
-  return true;
+  // return true;
+  transaction.oncomplete = function() {
+    location.replace('teams.html');
+  }
+  return false;
 }

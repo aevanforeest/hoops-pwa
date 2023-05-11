@@ -131,10 +131,13 @@ function updatePlayerButtons() {
 }
 
 function storePlay(play) {
+    renderPlay(play);
     const transaction = db.transaction('plays', 'readwrite');
     const playStore = transaction.objectStore('plays');
     playStore.add(play);
-    renderPlay(play);
+    transaction.oncomplete = function() {
+      //
+    }
 }
 
 function renderPlay(play) {
@@ -190,8 +193,6 @@ function renderPlay(play) {
     case 'OUT':
       item.innerHTML = 'Substitute out #' + player.number + ' ' + player.name;
       break;
-    default:
-      item.innerHTML = 'UNKNOWN PLAY TYPE';
   }
   list.prepend(item);
 }

@@ -26,5 +26,9 @@ function savePlayer() {
   const transaction = db.transaction('players', 'readwrite');
   const playerStore = transaction.objectStore('players');
   playerStore.add(player);
-  return true;
+  // return true;
+  transaction.oncomplete = function() {
+    location.replace('team.html?id=' + teamId);
+  }
+  return false;
 }

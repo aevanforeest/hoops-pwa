@@ -28,7 +28,11 @@ function saveTeam() {
   const transaction = db.transaction('teams', 'readwrite');
   const teamStore = transaction.objectStore('teams');
   teamStore.put(team);
-  return true;
+  // return true;
+  transaction.oncomplete = function() {
+    location.replace('team.html?id=' + teamId);
+  }
+  return false;
 }
 
 function deleteTeam() {
@@ -37,7 +41,11 @@ function deleteTeam() {
     const transaction = db.transaction('teams', 'readwrite');
     const teamStore = transaction.objectStore('teams');
     teamStore.delete(Number(teamId));
-    return true;
+    // return true;
+    transaction.oncomplete = function() {
+      location.replace('teams.html');
+    }
+    return false;
   }
   return false;
 }
